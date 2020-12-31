@@ -206,8 +206,12 @@ class S3Ftp:
     def s3_transfer_file(self):
         s3_client = boto3.client('s3', region_name='us-east-1')
         sftp = create_sftp_client(self.sftp_host, self.sftp_port)
-        with sftp.open('/sftp/path/filename', 'wb', 32768) as f:
-            s3_client.download_fileobj('mybucket', 'mykey', f)
+        try:
+            with sftp.open('/sftp/path/filename', 'wb', 32768) as f:
+                s3_client.download_fileobj('mybucket', 'mykey', f)
+        except:
+
+            print("exception here")
 
     def create_file_list(self):
         """
