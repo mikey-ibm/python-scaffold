@@ -13,6 +13,7 @@ paramiko
 pytest
 moto
 mockssh
+pre-commit
 
 
 
